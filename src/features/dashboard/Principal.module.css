@@ -1,0 +1,440 @@
+/* Variables de colores */
+:root {
+  --color-primary: #0f172a;
+  --color-primary-dark: #0f172a;
+  --color-primary-light: rgba(30, 58, 138, 0.1);
+  --color-primary-hover: #2563eb;
+  --color-secondary: #f97316;
+  --color-secondary-dark: #ea580c;
+  --color-secondary-light: rgba(249, 115, 22, 0.1);
+  --color-success: #22c55e;
+  --color-success-dark: #16a34a;
+  --color-success-light: rgba(34, 197, 94, 0.15);
+  --color-info: #0ea5e9;
+  --color-info-dark: #0284c7;
+  --color-warning: #f59e0b;
+  --color-warning-light: rgba(245, 158, 11, 0.15);
+  --color-danger: #ef4444;
+  --color-text-dark: #0f172a;
+  --color-text: #334155;
+  --color-text-light: #64748b;
+  --color-border: #e2e8f0;
+  --color-background: #f8fafc;
+  --shadow-sm: 0 4px 15px rgba(0,0,0,0.03);
+  --shadow-md: 0 8px 30px rgba(0,0,0,0.06);
+  --shadow-lg: 0 10px 35px rgba(0,0,0,0.1);
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-full: 50px;
+}
+
+/* Animaciones */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Contenedor principal del dashboard */
+.dashboardContainer {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem;
+  animation: fadeIn 0.5s ease;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+/* Sección de bienvenida */
+.welcomeSection {
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+  color: white;
+  padding: 2.5rem;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  animation: fadeIn 0.6s ease;
+}
+
+.welcomeSection h1 {
+  margin: 0 0 1rem 0;
+  font-size: 2.5rem;
+  font-weight: 800;
+  line-height: 1.2;
+}
+
+.welcomeSection p {
+  margin: 0;
+  font-size: 1.1rem;
+  line-height: 1.6;
+  opacity: 0.95;
+  max-width: 800px;
+}
+
+/* Grid de información */
+.infoGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+  animation: fadeIn 0.7s ease;
+}
+
+/* Tarjetas de información */
+.infoCard, .infoCardAction {
+  background: white;
+  border-radius: var(--radius-lg);
+  padding: 2rem;
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--color-border);
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.infoCard:hover, .infoCardAction:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-lg);
+}
+
+.infoCard h2, .infoCardAction h2 {
+  margin: 0 0 1rem 0;
+  color: var(--color-primary);
+  font-size: 1.4rem;
+  font-weight: 700;
+}
+
+.infoCard p, .infoCardAction p {
+  color: var(--color-text);
+  line-height: 1.6;
+  margin: 0 0 1rem 0;
+  flex-grow: 1;
+}
+
+.infoCard ul {
+  list-style-position: inside;
+  color: var(--color-text);
+  line-height: 1.8;
+  margin: 1rem 0 0 0;
+  padding: 0;
+}
+
+.infoCard li {
+  margin: 0.5rem 0;
+  color: var(--color-text);
+}
+
+/* Card de acción especial */
+.infoCardAction {
+  background: linear-gradient(135deg, var(--color-secondary-light) 0%, rgba(249, 115, 22, 0.05) 100%);
+  border: 2px solid var(--color-secondary);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.infoCardAction h2 {
+  color: var(--color-secondary);
+}
+
+/* Tarjeta del quiz */
+.quizCard {
+  background: white;
+  border-radius: var(--radius-lg);
+  padding: 2.5rem;
+  box-shadow: var(--shadow-lg);
+  border: 1px solid var(--color-border);
+  animation: fadeIn 0.5s ease;
+}
+
+.quizCard h2 {
+  margin: 0 0 0.5rem 0;
+  color: var(--color-primary);
+  font-size: 2rem;
+  font-weight: 800;
+}
+
+.quizCard > p {
+  color: var(--color-text);
+  margin: 0 0 2rem 0;
+  font-size: 1.1rem;
+}
+
+/* Bloque de pregunta */
+.questionBlock {
+  margin: 2rem 0;
+  padding: 1.5rem;
+  background-color: var(--color-background);
+  border-radius: var(--radius-md);
+  border-left: 4px solid var(--color-secondary);
+}
+
+.questionText {
+  margin: 0 0 1.2rem 0;
+  color: var(--color-text-dark);
+  font-size: 1.1rem;
+  font-weight: 700;
+  line-height: 1.5;
+}
+
+/* Grid de opciones */
+.optionsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+}
+
+/* Botones de opción */
+.optionButton {
+  padding: 1rem;
+  border: 2px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: white;
+  color: var(--color-text);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-align: center;
+  line-height: 1.4;
+  font-size: 0.95rem;
+}
+
+.optionButton:hover {
+  border-color: var(--color-secondary);
+  background-color: var(--color-secondary-light);
+  color: var(--color-secondary);
+  transform: translateY(-2px);
+}
+
+.optionButton:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.optionSelected {
+  border-color: var(--color-secondary);
+  background: linear-gradient(135deg, var(--color-secondary) 0%, var(--color-secondary-dark) 100%);
+  color: white;
+  font-weight: 700;
+}
+
+/* Tarjeta de resultado */
+.resultCard {
+  background: white;
+  border-radius: var(--radius-lg);
+  padding: 2.5rem;
+  box-shadow: var(--shadow-lg);
+  border: 1px solid var(--color-border);
+  animation: fadeIn 0.5s ease;
+  text-align: center;
+}
+
+.resultCard h2 {
+  margin: 0 0 0.5rem 0;
+  color: var(--color-primary);
+  font-size: 2rem;
+  font-weight: 800;
+}
+
+.resultCard > p:first-of-type {
+  color: var(--color-text);
+  margin: 0 0 2rem 0;
+  font-size: 1.1rem;
+}
+
+/* Resumen del resultado */
+.resultSummary {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin: 2rem 0;
+  font-size: 1.2rem;
+  color: var(--color-text);
+  font-weight: 600;
+}
+
+.resultValue {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: var(--color-secondary);
+  min-width: 80px;
+}
+
+.resultText {
+  color: var(--color-text);
+  line-height: 1.6;
+  margin: 1.5rem 0 2rem 0;
+  font-size: 1rem;
+}
+
+/* Grupo de botones */
+.buttonGroup {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1.5rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* Botones primarios y secundarios */
+.primaryBtn, .secondaryBtn {
+  padding: 0.75rem 2rem;
+  border: none;
+  border-radius: var(--radius-md);
+  font-weight: 700;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-width: 150px;
+}
+
+.primaryBtn {
+  background: linear-gradient(135deg, var(--color-secondary) 0%, var(--color-secondary-dark) 100%);
+  color: white;
+  box-shadow: 0 4px 15px rgba(249, 115, 22, 0.3);
+}
+
+.primaryBtn:hover {
+  background: linear-gradient(135deg, var(--color-secondary) 20%, var(--color-secondary-dark) 100%);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(249, 115, 22, 0.4);
+}
+
+.primaryBtn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.secondaryBtn {
+  background: white;
+  color: var(--color-primary);
+  border: 2px solid var(--color-primary);
+  box-shadow: none;
+}
+
+.secondaryBtn:hover {
+  background: var(--color-primary-light);
+  transform: translateY(-3px);
+  box-shadow: 0 4px 15px rgba(15, 23, 42, 0.1);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .dashboardContainer {
+    padding: 1rem;
+    gap: 1.5rem;
+  }
+
+  .welcomeSection {
+    padding: 1.5rem;
+  }
+
+  .welcomeSection h1 {
+    font-size: 1.8rem;
+  }
+
+  .welcomeSection p {
+    font-size: 0.95rem;
+  }
+
+  .infoGrid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .quizCard, .resultCard {
+    padding: 1.5rem;
+  }
+
+  .optionsGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .optionButton {
+    padding: 0.8rem;
+    font-size: 0.9rem;
+  }
+
+  .resultValue {
+    font-size: 2rem;
+    min-width: 60px;
+  }
+
+  .resultSummary {
+    gap: 0.5rem;
+    font-size: 1rem;
+  }
+
+  .buttonGroup {
+    flex-direction: column;
+    gap: 0.8rem;
+  }
+
+  .primaryBtn, .secondaryBtn {
+    width: 100%;
+    min-width: unset;
+  }
+
+  .quizCard h2, .resultCard h2 {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .dashboardContainer {
+    padding: 0.75rem;
+  }
+
+  .welcomeSection {
+    padding: 1rem;
+  }
+
+  .welcomeSection h1 {
+    font-size: 1.5rem;
+  }
+
+  .welcomeSection p {
+    font-size: 0.85rem;
+  }
+
+  .infoCard h2, .infoCardAction h2,
+  .quizCard h2, .resultCard h2 {
+    font-size: 1.2rem;
+  }
+
+  .resultValue {
+    font-size: 1.8rem;
+  }
+
+  .resultSummary {
+    flex-direction: column;
+    gap: 0.3rem;
+  }
+
+  .buttonGroup {
+    gap: 0.5rem;
+  }
+
+  .primaryBtn, .secondaryBtn {
+    padding: 0.6rem 1.2rem;
+    font-size: 0.9rem;
+  }
+}

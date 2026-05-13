@@ -1,0 +1,199 @@
+
+.principalRoot {
+  background-color: #ffffff;
+  min-height: 100vh;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.mainAnimatedContainer {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  transition: box-shadow 0.5s cubic-bezier(.4,0,.2,1);
+  box-shadow: 0 0 0 rgba(0,0,0,0);
+  animation: fadeInMain 0.7s cubic-bezier(.4,0,.2,1);
+}
+
+.principalContent {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 3rem 1rem;
+  transition: background 0.6s cubic-bezier(.4,0,.2,1);
+  width: 100vh;
+  height: 100vh;
+  background-color: #ffffff;
+}
+
+.principalContentArea {
+  flex: 2 1 300px !important;
+  min-width: 200px !important;
+  max-width: 300px !important;
+  margin: 0 auto !important;
+  width: 100% !important;
+  transition: box-shadow 0.5s cubic-bezier(.4,0,.2,1);
+}
+
+/* Clase específica para login */
+.loginContentArea {
+  flex: 2 1 300px !important;
+  min-width: 200px !important;
+  max-width: 300px !important;
+  margin: 0 auto !important;
+  width: 100% !important;
+  transition: box-shadow 0.5s cubic-bezier(.4,0,.2,1);
+}
+
+.contentCard {
+  background-color: #f8f9fa;
+  border: 1px solid #dee2e6;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+  transition: box-shadow 0.5s cubic-bezier(.4,0,.2,1);
+}
+
+.sidebarCardHeader {
+  background-color: #6c757d;
+  color: white;
+  padding: 1.2rem;
+  text-align: center;
+  transition: background 0.5s cubic-bezier(.4,0,.2,1);
+}
+
+.sidebarCardHeader h3 {
+  margin: 0;
+  font-size: 1.3rem;
+}
+
+.sidebarCardBody {
+  padding: 2rem;
+  text-align: center;
+}
+
+.loginForm {
+  text-align: left;
+}
+
+.formGroup {
+  margin-bottom: 1.5rem;
+}
+
+.formLabel {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: #2c3e50;
+  font-weight: bold;
+  font-size: 0.9rem;
+}
+
+.formControl {
+  width: 100%;
+  padding: 0.8rem;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  font-size: 1rem;
+  transition: border-color 0.3s cubic-bezier(.4,0,.2,1), box-shadow 0.3s;
+  box-sizing: border-box;
+}
+
+.formControl:focus {
+  outline: none;
+  border-color: #e67e22;
+  box-shadow: 0 0 0 2px rgba(230,126,34,0.2);
+}
+
+.crearBtn {
+  display: inline-block;
+  padding: 0.8rem 1.5rem;
+  background-color: #e67e22;
+  color: white;
+  text-decoration: none;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: bold;
+  transition: all 0.3s cubic-bezier(.4,0,.2,1), box-shadow 0.3s;
+  box-shadow: 0 2px 8px rgba(230,126,34,0.12);
+  cursor: pointer;
+}
+
+.submitBtn {
+  width: 100%;
+  margin-top: 1rem;
+}
+
+.crearBtn:hover {
+  background-color: #d35400;
+  box-shadow: 0 4px 16px rgba(230,126,34,0.25);
+  transform: translateY(-2px);
+}
+
+.crearBtn:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 8px rgba(230,126,34,0.12);
+}
+
+.crearBtn:disabled {
+  background-color: #94a3b8;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: 0 2px 8px rgba(148, 163, 184, 0.12);
+}
+
+.linkContainer {
+  margin-top: 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid #dee2e6;
+}
+
+.linkContainer p {
+  margin: 0;
+  color: #666;
+  font-size: 0.9rem;
+}
+
+.linkText {
+  color: #e67e22;
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.3s;
+}
+
+.linkText:hover {
+  color: #d35400;
+  text-decoration: underline;
+}
+
+@keyframes fadeInMain {
+  from { 
+    opacity: 0; 
+    transform: translateY(-30px);
+  }
+  to { 
+    opacity: 1; 
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 600px) {
+  .principalContentArea {
+    min-width: 0;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .sidebarCardBody {
+    padding: 1.5rem;
+  }
+}

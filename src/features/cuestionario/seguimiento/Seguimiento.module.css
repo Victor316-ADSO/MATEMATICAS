@@ -1,0 +1,276 @@
+.container {
+  min-height: 100vh;
+  background-color: #f8f9fa;
+  width: 100%;
+  animation: fadeIn 0.3s ease;
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 0.75rem;
+}
+
+/* Tarjetas de estadísticas */
+.statsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+
+.statCard {
+  padding: 0.75rem;
+  border-radius: 4px;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.08);
+  background: white;
+  transition: all 0.3s ease;
+}
+
+.statCard:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.statContent {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.statInfo h6 {
+  margin: 0;
+  font-size: 0.8rem;
+  color: #666;
+}
+
+.statInfo h2 {
+  margin: 0.3rem 0 0;
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: #2c3e50;
+}
+
+/* Colores de tarjetas */
+.primary i {
+  color: #e67e22;
+}
+
+.success i {
+  color: #2ecc71;
+}
+
+.info i {
+  color: #3498db;
+}
+
+/* Tarjeta principal */
+.mainCard {
+  background: white;
+  border-radius: 4px;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.08);
+  margin-bottom: 0.75rem;
+  transition: all 0.3s ease;
+}
+
+.mainCard:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.cardHeader {
+  padding: 0.75rem;
+  background: #2c3e50;
+  color: white;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+}
+
+.cardHeader h5 {
+  margin: 0;
+  font-size: 0.9rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.cardBody {
+  padding: 0.75rem;
+}
+
+/* Botones */
+.actionButton {
+  background-color: #e67e22;
+  color: white;
+  border: none;
+  padding: 0.4rem 0.8rem;
+  border-radius: 3px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 0.8rem;
+  transition: all 0.2s ease;
+}
+
+.actionButton:hover {
+  background-color: #d35400;
+  transform: translateY(-1px);
+  box-shadow: 0 1px 3px rgba(230, 126, 34, 0.2);
+}
+
+/* Tabla */
+.tableContainer {
+  overflow-x: auto;
+  margin-top: 0.5rem;
+}
+
+.table {
+  width: 100%;
+  margin-bottom: 0.5rem;
+  color: #2c3e50;
+  vertical-align: top;
+  border-color: #dee2e6;
+  border-collapse: collapse;
+}
+
+.table th,
+.table td {
+  padding: 0.5rem;
+  vertical-align: middle;
+  border-bottom: 1px solid #dee2e6;
+  font-size: 0.8rem;
+}
+
+.table th {
+  font-weight: 600;
+  background: #f8f9fa;
+  font-size: 0.75rem;
+}
+
+.table tbody tr:hover {
+  background: #f8f9fa;
+}
+
+/* Descripción y fechas */
+.description {
+  color: #666;
+  font-size: 0.75rem;
+  margin-top: 0.15rem;
+}
+
+.dates {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  font-size: 0.75rem;
+  color: #666;
+}
+
+.dates i {
+  margin-right: 0.3rem;
+  width: 0.8rem;
+  text-align: center;
+  color: #e67e22;
+}
+
+/* Progreso */
+.progressContainer {
+  width: 100%;
+  max-width: 150px;
+}
+
+.progressBar {
+  height: 0.5rem;
+  background: #f8f9fa;
+  border-radius: 0.5rem;
+  margin-bottom: 0.3rem;
+  overflow: hidden;
+  border: 1px solid #dee2e6;
+}
+
+.progressFill {
+  height: 100%;
+  background-color: #2ecc71;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 0.65rem;
+  transition: width 0.3s ease;
+}
+
+.progressStats {
+  font-size: 0.75rem;
+  color: #666;
+}
+
+.completed {
+  color: #2ecc71;
+  font-weight: 600;
+}
+
+/* Mensaje vacío */
+.emptyMessage {
+  text-align: center;
+  color: #666;
+  padding: 1rem;
+  font-style: italic;
+  font-size: 0.8rem;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 992px) {
+  .container {
+    padding: 0.5rem;
+  }
+  
+  .statsGrid {
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 0.4rem;
+  }
+  
+  .navbar {
+    margin-bottom: 0.5rem;
+  }
+  
+  .statsGrid {
+    grid-template-columns: 1fr;
+  }
+  
+  .table th,
+  .table td {
+    padding: 0.4rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .navbarContent {
+    flex-direction: column;
+    gap: 0.5rem;
+    text-align: center;
+  }
+  
+  .backButton {
+    width: 100%;
+    justify-content: center;
+  }
+  
+  .navbarUser {
+    width: 100%;
+    justify-content: center;
+  }
+}

@@ -1,0 +1,462 @@
+/* Estilos para el componente Estudiantes */
+.estudiantesRoot {
+  min-height: 100vh;
+  background-color: #f8f9fa;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+.mainContent {
+  width: 100%;
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 0 0.75rem;
+  box-sizing: border-box;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+  padding: 0.25rem 0;
+}
+
+.header h2 {
+  color: #2c3e50;
+  font-size: 1.2rem;
+  margin: 0;
+  font-weight: 600;
+}
+
+.headerButtons {
+  display: flex;
+  gap: 0.4rem;
+}
+
+.btnPrimary {
+  background-color: #e67e22;
+  color: white;
+  border: none;
+  padding: 0.4rem 0.8rem;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-weight: 500;
+  font-size: 0.8rem;
+}
+
+.btnPrimary:hover {
+  background-color: #d35400;
+  transform: translateY(-1px);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.btnSecondary {
+  background-color: #7f8c8d;
+  color: white;
+  border: none;
+  padding: 0.4rem 0.8rem;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-weight: 500;
+  font-size: 0.8rem;
+}
+
+.btnSecondary:hover {
+  background-color: #6c7a7d;
+  transform: translateY(-1px);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.btnLarge {
+  background-color: #e67e22;
+  color: white;
+  border: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 0.9rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  width: 100%;
+}
+
+.btnLarge:hover {
+  background-color: #d35400;
+  transform: translateY(-1px);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.btnDelete {
+  background-color: #e74c3c;
+  color: white;
+  border: none;
+  width: 24px;
+  height: 24px;
+  border-radius: 3px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 0.7rem;
+}
+
+.btnDelete:hover {
+  background-color: #c0392b;
+  transform: translateY(-1px);
+}
+
+.alert {
+  padding: 0.5rem;
+  border-radius: 3px;
+  margin-bottom: 0.75rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.8rem;
+}
+
+.alertsuccess {
+  background-color: #d4edda;
+  color: #155724;
+  border: 1px solid #c3e6cb;
+}
+
+.alertdanger {
+  background-color: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+}
+
+.alertwarning {
+  background-color: #fff3cd;
+  color: #856404;
+  border: 1px solid #ffeeba;
+}
+
+.alertInfo {
+  background-color: #d1ecf1;
+  color: #0c5460;
+  border: 1px solid #bee5eb;
+  padding: 0.5rem;
+  border-radius: 3px;
+  margin-bottom: 0.5rem;
+  font-size: 0.8rem;
+}
+
+.closeBtn {
+  background: none;
+  border: none;
+  font-size: 1rem;
+  cursor: pointer;
+  padding: 0;
+  line-height: 1;
+}
+
+.contentGrid {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 0.75rem;
+  width: 100%;
+}
+
+.formSection {
+  width: 100%;
+}
+
+.tableSection {
+  width: 100%;
+}
+
+.card {
+  background: white;
+  border-radius: 4px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  width: 100%;
+}
+
+.cardHeader {
+  background-color: #2c3e50;
+  color: white;
+  padding: 0.5rem 0.75rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.cardHeader h5 {
+  margin: 0;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.cardBody {
+  padding: 0.75rem;
+}
+
+.formGroup {
+  margin-bottom: 0.6rem;
+}
+
+.formGroup label {
+  display: block;
+  margin-bottom: 0.3rem;
+  font-weight: 500;
+  color: #2c3e50;
+  font-size: 0.8rem;
+}
+
+.formControl {
+  width: 100%;
+  padding: 0.4rem 0.6rem;
+  border: 1px solid #ddd;
+  border-radius: 3px;
+  font-size: 0.8rem;
+  transition: border-color 0.3s;
+  box-sizing: border-box;
+}
+
+.formControl:focus {
+  outline: none;
+  border-color: #e67e22;
+  box-shadow: 0 0 0 0.1rem rgba(230, 126, 34, 0.2);
+}
+
+.searchBox {
+  margin-bottom: 0.6rem;
+  position: relative;
+}
+
+.searchIcon {
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #7f8c8d;
+  font-size: 0.8rem;
+}
+
+.tableResponsive {
+  overflow-x: auto;
+  width: 100%;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table th,
+.table td {
+  padding: 0.4rem 0.6rem;
+  text-align: left;
+  border-bottom: 1px solid #eee;
+  font-size: 0.8rem;
+}
+
+.table th {
+  background-color: #f8f9fa;
+  font-weight: 600;
+  color: #2c3e50;
+  font-size: 0.75rem;
+}
+
+.table tbody tr:hover {
+  background-color: #f8f9fa;
+}
+
+/* Estilos para importación de CSV */
+.fileInputSection {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  min-width: 120px;
+}
+
+.fileInputSection label {
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: #2c3e50;
+  margin: 0;
+}
+
+.fileInputWrapper {
+  position: relative;
+  width: 120px;
+  height: 120px;
+  overflow: hidden;
+}
+
+.fileInput {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
+  z-index: 2;
+}
+
+.fileInputContent {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #f8f9fa;
+  border: 2px dashed #ced4da;
+  border-radius: 3px;
+  padding: 0.5rem;
+  transition: all 0.2s ease;
+  z-index: 1;
+}
+
+.fileInput:hover + .fileInputContent {
+  border-color: #e67e22;
+  background-color: #fff;
+}
+
+.fileInput:focus + .fileInputContent {
+  border-color: #e67e22;
+  box-shadow: 0 0 0 0.1rem rgba(230, 126, 34, 0.25);
+}
+
+.fileInputContent svg {
+  color: #7f8c8d;
+  margin-bottom: 0.3rem;
+}
+
+.fileInputContent span {
+  font-size: 0.8rem;
+  color: #2c3e50;
+  font-weight: 600;
+}
+
+.fileInputText {
+  font-size: 0.7rem !important;
+  color: #7f8c8d !important;
+  font-weight: normal !important;
+  margin-top: 0.2rem;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  text-align: center;
+  color: #155724;
+}
+
+.importContainer {
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  gap: 1rem;
+  align-items: start;
+}
+
+.formatInfo {
+  flex: 1;
+}
+
+.formatInfo h6 {
+  font-size: 0.8rem;
+  margin-bottom: 0.4rem;
+}
+
+.formatInfo p {
+  margin: 0.4rem 0;
+  font-size: 0.75rem;
+}
+
+.submitSection {
+  display: flex;
+  align-items: end;
+  padding-top: 1.2rem;
+}
+
+@media (max-width: 992px) {
+  .contentGrid {
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+  }
+  
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.4rem;
+  }
+  
+  .headerButtons {
+    width: 100%;
+  }
+  
+  .importContainer {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
+  
+  .submitSection {
+    padding-top: 0;
+  }
+  
+  .fileInputSection {
+    min-width: auto;
+  }
+}
+
+@media (max-width: 768px) {
+  .mainContent {
+    padding: 0 0.5rem;
+  }
+  
+  .btnLarge {
+    padding: 0.5rem 1rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .searchBox {
+    flex-direction: column;
+    gap: 0.3rem;
+  }
+  
+  .cardHeader h5 {
+    font-size: 0.8rem;
+  }
+  
+  .header h2 {
+    font-size: 1rem;
+  }
+  
+  .headerButtons {
+    flex-direction: column;
+    gap: 0.2rem;
+  }
+  
+  .btnPrimary, .btnSecondary {
+    font-size: 0.75rem;
+    padding: 0.3rem 0.6rem;
+  }
+}

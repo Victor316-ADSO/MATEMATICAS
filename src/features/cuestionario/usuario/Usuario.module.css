@@ -1,0 +1,965 @@
+/* Variables de colores consistentes */
+:root {
+  --color-primary: #0f172a;
+  --color-primary-dark: #0f172a;
+  --color-primary-light: rgba(30, 58, 138, 0.1);
+  --color-primary-hover: #2563eb;
+  --color-secondary: #f97316;
+  --color-secondary-dark: #ea580c;
+  --color-secondary-light: rgba(249, 115, 22, 0.1);
+  --color-success: #22c55e;
+  --color-success-dark: #16a34a;
+  --color-success-light: rgba(34, 197, 94, 0.15);
+  --color-info: #0ea5e9;
+  --color-info-dark: #0284c7;
+  --color-info-light: rgba(14, 165, 233, 0.15);
+  --color-warning: #f59e0b;
+  --color-warning-light: rgba(245, 158, 11, 0.15);
+  --color-danger: #ef4444;
+  --color-text-dark: #0f172a;
+  --color-text: #334155;
+  --color-text-light: #64748b;
+  --color-border: #e2e8f0;
+  --color-background: #f8fafc;
+  --shadow-sm: 0 4px 15px rgba(0,0,0,0.03);
+  --shadow-md: 0 8px 30px rgba(0,0,0,0.06);
+  --shadow-lg: 0 10px 35px rgba(0,0,0,0.1);
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-full: 50px;
+}
+
+/* Contenedor principal del dashboard de estudiante */
+.dashboardContainer {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1.5rem;
+  animation: fadeIn 0.4s ease;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Header del dashboard */
+.dashboardHeader {
+  width: 100%;
+  max-width: 1200px;
+  margin-bottom: 2rem;
+  background: white;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  overflow: hidden;
+  position: relative;
+}
+
+.dashboardHeader::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--color-success) 0%, var(--color-info) 50%, var(--color-warning) 100%);
+}
+
+.headerContent {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2rem;
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+  color: white;
+}
+
+.headerInfo h1 {
+  margin: 0 0 0.5rem 0;
+  font-size: 2rem;
+  font-weight: 700;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.headerInfo h2 {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 400;
+  opacity: 0.9;
+}
+
+.headerActions {
+  display: flex;
+  gap: 1rem;
+}
+
+.logoutButton {
+  padding: 0.75rem 1.5rem;
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: var(--radius-sm);
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  backdrop-filter: blur(10px);
+}
+
+.logoutButton:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Contenido principal */
+.dashboardContent {
+  width: 100%;
+  max-width: 1200px;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.contentCard {
+  background: white;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  overflow: hidden;
+}
+
+/* Wrapper para tabs y estadísticas */
+.tabsWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* Barra de estadísticas */
+.statsBar {
+  background: white;
+  border-radius: 12px;
+  padding: 16px 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e5e7eb;
+}
+
+.statsTitle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+  color: #374151;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.statsTitle i {
+  color: var(--color-secondary);
+}
+
+.statsItems {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.statItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 12px 16px;
+  border-radius: 8px;
+  min-width: 80px;
+  transition: all 0.3s ease;
+}
+
+.statItem:hover {
+  transform: translateY(-2px);
+}
+
+.statNumber {
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.statLabel {
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-align: center;
+}
+
+/* Colores de estadísticas */
+.statDisponibles {
+  background: var(--color-success-light);
+  color: var(--color-success-dark);
+}
+
+.statDisponibles .statNumber {
+  color: var(--color-success);
+}
+
+.statCompletados {
+  background: var(--color-info-light);
+  color: var(--color-info-dark);
+}
+
+.statCompletados .statNumber {
+  color: var(--color-info);
+}
+
+.statProgramados {
+  background: var(--color-warning-light);
+  color: var(--color-warning);
+}
+
+.statProgramados .statNumber {
+  color: var(--color-warning);
+}
+
+.statExpirados {
+  background: rgba(239, 68, 68, 0.15);
+  color: var(--color-danger);
+}
+
+.statExpirados .statNumber {
+  color: var(--color-danger);
+}
+
+.statCerrados {
+  background: rgba(107, 114, 128, 0.15);
+  color: var(--color-text-light);
+}
+
+.statCerrados .statNumber {
+  color: var(--color-text-light);
+}
+
+.tabsContainer {
+  display: flex;
+  background: var(--color-background);
+  border-bottom: 1px solid var(--color-border);
+  overflow-x: auto;
+  border-radius: 8px;
+}
+
+.tabButton {
+  flex: 1;
+  min-width: 120px;
+  padding: 1rem 1.5rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--color-text-light);
+  font-weight: 500;
+  position: relative;
+}
+
+.tabButton:hover {
+  background: var(--color-info-light);
+  color: var(--color-info);
+}
+
+.tabButtonActive {
+  background: white;
+  color: var(--color-info);
+  font-weight: 600;
+  box-shadow: 0 -2px 0 var(--color-info) inset;
+}
+
+.tabLabel {
+  font-size: 0.875rem;
+  text-transform: capitalize;
+}
+
+.tabCountSmall {
+  background: rgba(0, 0, 0, 0.1);
+  color: var(--color-text-light);
+  padding: 0.2rem 0.5rem;
+  border-radius: 12px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  min-width: 18px;
+  height: 18px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.tabButton:hover .tabCountSmall {
+  background: rgba(0, 0, 0, 0.15);
+  transform: scale(1.05);
+}
+
+.tabButtonActive .tabCountSmall {
+  background: var(--color-info);
+  color: white;
+  transform: scale(1.1);
+}
+
+/* Estados específicos de las pestañas */
+.tabDisponibles.tabButtonActive {
+  color: var(--color-success);
+  box-shadow: 0 -2px 0 var(--color-success) inset;
+}
+
+.tabDisponibles.tabButtonActive .tabCountSmall {
+  background: var(--color-success);
+}
+
+.tabCompletados.tabButtonActive {
+  color: var(--color-info);
+  box-shadow: 0 -2px 0 var(--color-info) inset;
+}
+
+.tabCompletados.tabButtonActive .tabCountSmall {
+  background: var(--color-info);
+}
+
+.tabProgramados.tabButtonActive {
+  color: var(--color-warning);
+  box-shadow: 0 -2px 0 var(--color-warning) inset;
+}
+
+.tabProgramados.tabButtonActive .tabCountSmall {
+  background: var(--color-warning);
+}
+
+.tabExpirados.tabButtonActive {
+  color: var(--color-danger);
+  box-shadow: 0 -2px 0 var(--color-danger) inset;
+}
+
+.tabExpirados.tabButtonActive .tabCountSmall {
+  background: var(--color-danger);
+}
+
+.tabCerrados.tabButtonActive {
+  color: var(--color-text-light);
+  box-shadow: 0 -2px 0 var(--color-text-light) inset;
+}
+
+.tabCerrados.tabButtonActive .tabCountSmall {
+  background: var(--color-text-light);
+}
+
+/* Contenido de las pestañas */
+.tabContent {
+  padding: 2rem;
+}
+
+.cuestionariosGrid {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  width: 100%;
+}
+
+/* Tarjetas de cuestionarios */
+.cuestionarioCard {
+  background: #f8f9fa;
+  border-radius: 0;
+  box-shadow: none;
+  padding: 8px 12px;
+  margin-bottom: 0;
+  border: none;
+  border-bottom: 1px solid var(--color-border);
+  transition: all 0.3s ease;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  display: block;
+  min-height: 50px;
+}
+
+.cuestionarioCard:hover {
+  box-shadow: none;
+  transform: none;
+  background: #dde8f4;
+}
+
+.cuestionarioCard:last-child {
+  border-bottom: none;
+}
+
+.cardContent {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  width: 100%;
+  height: 100%;
+}
+
+.cardMainInfo {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.cardHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 2px;
+}
+
+.cardHeader h4 {
+  margin: 0;
+  color: var(--color-text-dark);
+  font-size: 1rem;
+  font-weight: 600;
+  flex: 1;
+}
+
+.estadoBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  white-space: nowrap;
+  background: var(--color-success);
+  color: white;
+}
+
+.cardDetails {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.cardInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 160px;
+}
+
+.infoRow {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--color-text-dark);
+  font-size: 0.8rem;
+}
+
+.infoRow i {
+  color: var(--color-text-light);
+  width: 16px;
+  text-align: center;
+}
+
+.infoRow strong {
+  color: var(--color-text-dark);
+  font-weight: 600;
+}
+
+.cardFechas {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 140px;
+}
+
+.fechaItem {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--color-text-dark);
+  font-size: 0.8rem;
+}
+
+.fechaItem i {
+  color: var(--color-text-light);
+  width: 16px;
+  text-align: center;
+}
+
+.fechaItem strong {
+  color: var(--color-text-dark);
+  font-weight: 600;
+}
+
+.cardActions {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: center;
+  min-width: 120px;
+  flex-shrink: 0;
+  gap: 6px;
+}
+
+.periodoInfo {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 4px;
+  width: 100%;
+}
+
+.periodoInfo .infoRow {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  color: var(--color-text-dark);
+  font-size: 0.8rem;
+  justify-content: center;
+  width: 100%;
+  text-align: center;
+  padding-right: 0;
+}
+
+.periodoInfo .infoRow i {
+  color: var(--color-text-light);
+  width: 14px;
+  text-align: center;
+  flex-shrink: 0;
+}
+
+.periodoInfo .infoRow strong {
+  color: var(--color-text-dark);
+  font-weight: 600;
+}
+
+.periodoInfo .infoRow span {
+  text-align: center;
+  width: 100%;
+}
+
+.actionButton {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 6px 12px;
+  border: none;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+  white-space: nowrap;
+  width: 100%;
+  justify-content: center;
+  text-align: center;
+}
+
+.actionButtonActive {
+  background: linear-gradient(135deg, var(--color-secondary) 0%, var(--color-secondary-dark) 100%);
+  color: #fff;
+}
+
+.actionButtonActive:hover {
+  background: linear-gradient(135deg, var(--color-secondary) 20%, var(--color-secondary-dark) 100%);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(249, 115, 22, 0.3);
+}
+
+.actionButtonDisabled {
+  background: #f3f4f6;
+  color: #9ca3af;
+  cursor: not-allowed;
+}
+
+.actionButtonDisabled:hover {
+  background: #f3f4f6;
+  transform: none;
+}
+
+/* Estado vacío */
+.emptyState {
+  text-align: center;
+  padding: 3rem 2rem;
+  color: var(--color-text-light);
+  background: white;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  animation: fadeIn 0.6s ease;
+}
+
+.emptyIcon {
+  font-size: 4rem;
+  margin-bottom: 1rem;
+  opacity: 0.5;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.5;
+  }
+  50% {
+    transform: scale(1.05);
+    opacity: 0.7;
+  }
+}
+
+.emptyTitle {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: var(--color-text-dark);
+}
+
+.emptyMessage {
+  font-size: 1rem;
+  line-height: 1.5;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+/* Estados vacíos específicos */
+.emptyDisponibles .emptyIcon {
+  color: var(--color-success);
+}
+
+.emptyCompletados .emptyIcon {
+  color: var(--color-info);
+}
+
+.emptyProgramados .emptyIcon {
+  color: var(--color-warning);
+}
+
+.emptyExpirados .emptyIcon {
+  color: var(--color-danger);
+}
+
+.emptyCerrados .emptyIcon {
+  color: var(--color-text-light);
+}
+
+/* Estados de carga */
+.loadingContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem;
+  color: var(--color-text-light);
+  background: white;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+}
+
+.loadingContainer i {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  animation: spin 1s linear infinite;
+  color: var(--color-info);
+}
+
+.loadingContainer p {
+  font-size: 1rem;
+  margin: 0;
+  font-weight: 500;
+}
+
+/* Animaciones */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .dashboardContainer {
+    padding: 1rem;
+  }
+  
+  .headerContent {
+    flex-direction: column;
+    gap: 1rem;
+    text-align: center;
+  }
+  
+  .headerInfo h1 {
+    font-size: 1.5rem;
+  }
+  
+  .headerInfo h2 {
+    font-size: 1rem;
+  }
+  
+  .contentCard {
+    margin: 0;
+  }
+  
+  .tabsContainer {
+    flex-wrap: wrap;
+  }
+  
+  .tabButton {
+    min-width: 100px;
+    padding: 0.75rem 1rem;
+  }
+  
+  .cuestionariosGrid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  
+  .cuestionarioCard {
+    padding: 1rem;
+  }
+  
+  .cardHeader {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+  
+  .cardHeader h4 {
+    font-size: 1.1rem;
+  }
+  
+  .estadoBadge {
+    margin-left: 0;
+    align-self: flex-start;
+  }
+  
+  .cardActions {
+    flex-direction: column;
+  }
+  
+  .actionButton {
+    width: 100%;
+  }
+}
+
+@media (max-width: 576px) {
+  .dashboardContainer {
+    padding: 0.5rem;
+  }
+  
+  .headerContent {
+    padding: 1.5rem;
+  }
+  
+  .tabContent {
+    padding: 1rem;
+  }
+  
+  .cuestionarioCard {
+    padding: 0.75rem;
+  }
+  
+  .emptyState {
+    padding: 2rem 1rem;
+  }
+  
+  .emptyIcon {
+    font-size: 3rem;
+  }
+  
+  .emptyTitle {
+    font-size: 1.25rem;
+  }
+}
+
+/* Estilos para el modal de información del cuestionario */
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.modalContent {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  max-width: 800px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+.modalHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 32px 36px 24px 36px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.modalHeader h3 {
+  margin: 0;
+  color: #1f2937;
+  font-size: 1.6rem;
+  font-weight: 600;
+}
+
+.modalCloseButton {
+  background: none;
+  border: none;
+  color: #6b7280;
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 4px;
+  transition: all 0.2s;
+}
+
+.modalCloseButton:hover {
+  background: #f3f4f6;
+  color: #374151;
+}
+
+.modalBody {
+  padding: 32px 36px;
+}
+
+.modalBody h4 {
+  margin: 0 0 20px 0;
+  color: #1f2937;
+  font-size: 1.4rem;
+  font-weight: 600;
+}
+
+.modalDescription {
+  color: #6b7280;
+  margin: 0 0 32px 0;
+  line-height: 1.6;
+  font-size: 1.1rem;
+}
+
+.modalInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.modalInfoRow {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  color: #374151;
+  font-size: 1.1rem;
+}
+
+.modalInfoRow svg {
+  color: #6b7280;
+  flex-shrink: 0;
+}
+
+.modalActions {
+  display: flex;
+  gap: 20px;
+  padding: 28px 36px 36px 36px;
+  border-top: 1px solid #e5e7eb;
+}
+
+.modalCancelButton {
+  flex: 1;
+  padding: 16px 24px;
+  border: 1px solid #d1d5db;
+  background: #fff;
+  color: #374151;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1.1rem;
+  transition: all 0.2s;
+}
+
+.modalCancelButton:hover {
+  background: #f9fafb;
+  border-color: #9ca3af;
+}
+
+.modalConfirmButton {
+  flex: 1;
+  padding: 12px 20px;
+  border: none;
+  background: linear-gradient(135deg, var(--color-secondary) 0%, var(--color-secondary-dark) 100%);
+  color: #fff;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: all 0.2s;
+}
+
+.modalConfirmButton:hover {
+  background: linear-gradient(135deg, var(--color-secondary) 20%, var(--color-secondary-dark) 100%);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(249, 115, 22, 0.3);
+}
+
+.modalConfirmButton:active {
+  transform: translateY(1px);
+}
+
+/* Estados de las tarjetas */
+.estadoDisponible {
+  background: #f8f9fa;
+  color: var(--color-text-dark);
+}
+
+.estadoCompletado {
+  background: #f8f9fa;
+  color: var(--color-text-dark);
+}
+
+.estadoProgramado {
+  background: #f8f9fa;
+  color: var(--color-text-dark);
+}
+
+.estadoExpirado {
+  background: #f8f9fa;
+  color: var(--color-text-dark);
+}
+
+.estadoCerrado {
+  background: #f8f9fa;
+  color: var(--color-text-dark);
+}
+
+.estadoDesconocido {
+  background: #f8f9fa;
+  color: var(--color-text-dark);
+}

@@ -1,0 +1,227 @@
+.principalRoot {
+  background-color: #ffffff;
+  height: 100vh;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.mainAnimatedContainer {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  transition: box-shadow 0.5s cubic-bezier(.4,0,.2,1);
+  box-shadow: 0 0 0 rgba(0,0,0,0);
+  animation: fadeInMain 0.7s cubic-bezier(.4,0,.2,1);
+  overflow: hidden;
+}
+
+.principalContent {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem 1rem;
+  transition: background 0.6s cubic-bezier(.4,0,.2,1);
+  width: 100vh;
+  height: 100vh;
+  background-color: #fcf7f7;
+  overflow: hidden;
+}
+
+.principalContentArea {
+  flex: 1;
+  min-width: 54px;
+  max-width: 700px;
+  margin: 0 auto;
+  width: 100%;
+  transition: box-shadow 0.5s cubic-bezier(.4,0,.2,1);
+  max-height: 100%;
+  overflow: hidden;
+}
+
+/* Clase específica para registro de docente */
+.registroContentArea {
+  flex: 1;
+  min-width: 320px;
+  max-width: 450px;
+  margin: 0 auto;
+  width: 100%;
+  transition: box-shadow 0.5s cubic-bezier(.4,0,.2,1);
+  max-height: 100%;
+  overflow: hidden;
+}
+
+.contentCard {
+  background-color: #f8f9fa;
+  border: 1px solid #dee2e6;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+  transition: box-shadow 0.5s cubic-bezier(.4,0,.2,1);
+  max-height: 100%;
+}
+
+.sidebarCardHeader {
+  background-color: #6c757d;
+  color: white;
+  padding: 1rem;
+  text-align: center;
+  transition: background 0.5s cubic-bezier(.4,0,.2,1);
+}
+
+.sidebarCardHeader h3 {
+  margin: 0;
+  font-size: 1.2rem;
+}
+
+.sidebarCardBody {
+  padding: 1.2rem;
+  text-align: center;
+  overflow: hidden;
+}
+
+.loginForm {
+  text-align: left;
+}
+
+.formGroup {
+  margin-bottom: 1.2rem;
+}
+
+.formLabel {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: #2c3e50;
+  font-weight: bold;
+  font-size: 0.9rem;
+}
+
+.formControl {
+  width: 100%;
+  padding: 0.7rem;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  font-size: 1rem;
+  transition: border-color 0.3s cubic-bezier(.4,0,.2,1), box-shadow 0.3s;
+  box-sizing: border-box;
+}
+
+.formControl:focus {
+  outline: none;
+  border-color: #e67e22;
+  box-shadow: 0 0 0 2px rgba(230,126,34,0.2);
+}
+
+.crearBtn {
+  display: inline-block;
+  padding: 0.8rem 1.5rem;
+  background-color: #e67e22;
+  color: white;
+  text-decoration: none;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: bold;
+  transition: all 0.3s cubic-bezier(.4,0,.2,1), box-shadow 0.3s;
+  box-shadow: 0 2px 8px rgba(230,126,34,0.12);
+  cursor: pointer;
+}
+
+.submitBtn {
+  width: auto;
+  margin-top: 0;
+}
+
+.buttonContainer {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 0.8rem;
+}
+
+.backBtn {
+  background-color: #6c757d;
+}
+
+.backBtn:hover {
+  background-color: #5a6268;
+}
+
+.crearBtn:hover {
+  background-color: #d35400;
+  box-shadow: 0 4px 16px rgba(230,126,34,0.25);
+  transform: translateY(-2px);
+}
+
+.crearBtn:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 8px rgba(230,126,34,0.12);
+}
+
+.crearBtn:disabled {
+  background-color: #94a3b8;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: 0 2px 8px rgba(148, 163, 184, 0.12);
+}
+
+.linkContainer {
+  margin-top: 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid #dee2e6;
+}
+
+.linkContainer p {
+  margin: 0;
+  color: #666;
+  font-size: 0.9rem;
+}
+
+.linkText {
+  color: #e67e22;
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.3s;
+}
+
+.linkText:hover {
+  color: #d35400;
+  text-decoration: underline;
+}
+
+@keyframes fadeInMain {
+  from { 
+    opacity: 0; 
+    transform: translateY(-30px);
+  }
+  to { 
+    opacity: 1; 
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 600px) {
+  .principalContentArea {
+    min-width: 0;
+    width: 100%;
+    max-width: 100%;
+    padding: 0 1rem;
+  }
+
+  .sidebarCardBody {
+    padding: 1rem;
+  }
+  
+  .principalContent {
+    padding: 1rem;
+  }
+} 
