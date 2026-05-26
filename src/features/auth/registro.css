@@ -77,7 +77,19 @@
   text-align: center;
   transition: background 0.5s cubic-bezier(.4,0,.2,1);
 }
+.logoWrapper {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
 
+.authLogo {
+  max-width: 160px;
+  width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
 .sidebarCardHeader h3 {
   margin: 0;
   font-size: 1.2rem;

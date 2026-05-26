@@ -9,6 +9,7 @@ const buildApiUrl = (path: string) => {
 };
 
 const AUTH_TOKEN_KEY = 'authToken';
+const ADMIN_AUTH_TOKEN_KEY = 'adminAuthToken';
 
 export const getAuthToken = (): string | null => {
   if (typeof window === 'undefined') {
@@ -28,8 +29,31 @@ export const setAuthToken = (token: string | null): void => {
   }
 };
 
+export const getAdminAuthToken = (): string | null => {
+  if (typeof window === 'undefined') {
+    return null;
+  }
+  return localStorage.getItem(ADMIN_AUTH_TOKEN_KEY);
+};
+
+export const setAdminAuthToken = (token: string | null): void => {
+  if (typeof window === 'undefined') {
+    return;
+  }
+  if (token) {
+    localStorage.setItem(ADMIN_AUTH_TOKEN_KEY, token);
+  } else {
+    localStorage.removeItem(ADMIN_AUTH_TOKEN_KEY);
+  }
+};
+
 const getAuthHeaders = (): Record<string, string> => {
   const token = getAuthToken();
+  return token ? { Authorization: `Bearer ${token}` } : {};
+};
+
+const getAdminAuthHeaders = (): Record<string, string> => {
+  const token = getAdminAuthToken();
   return token ? { Authorization: `Bearer ${token}` } : {};
 };
 
@@ -109,6 +133,62 @@ export const fetchApi = async (url: string, options: RequestInit = {}) => {
   }
 };
 
+/** Peticiones al panel administrativo de Analytics (token separado). */
+export const fetchAdminApi = async (url: string, options: RequestInit = {}) => {
+  try {
+    const finalUrl = buildApiUrl(url);
+    const fetchOptions: RequestInit = {
+      ...defaultFetchOptions(),
+      ...options,
+      headers: {
+        ...defaultFetchOptions().headers,
+        ...getAdminAuthHeaders(),
+        ...(options.headers || {}),
+      },
+    };
+
+    const response = await fetch(finalUrl, fetchOptions);
+    const responseText = await response.text();
+
+    if (!response.ok) {
+      if (response.status === 401) {
+        try {
+          const parsed = JSON.parse(responseText);
+          return {
+            success: false,
+            error: parsed.message || 'Sesión administrativa expirada',
+            message: parsed.message,
+            status: response.status,
+          };
+        } catch {
+          return { success: false, error: 'Sesión administrativa expirada', status: response.status };
+        }
+      }
+      try {
+        const parsed = JSON.parse(responseText);
+        return {
+          success: false,
+          error: parsed.message || parsed.error || response.statusText,
+          message: parsed.message,
+          status: response.status,
+          ...parsed,
+        };
+      } catch {
+        return { success: false, status: response.status, error: response.statusText, rawResponse: responseText };
+      }
+    }
+
+    try {
+      return JSON.parse(responseText);
+    } catch {
+      return { success: false, error: 'Error al parsear respuesta del servidor', rawResponse: responseText };
+    }
+  } catch (error) {
+    console.error('Error en fetchAdminApi:', error);
+    throw error;
+  }
+};
+
 export const API_ENDPOINTS = {
   // Rutas legacy existentes para compatibilidad con el frontend actual
   login: `${API_BASE_URL}/api/auth/login`,
@@ -153,6 +233,22 @@ export const API_ENDPOINTS = {
     usuario: {
       perfil: `${API_BASE_URL}/api/usuario/perfil`,
       contacto: `${API_BASE_URL}/api/usuario/contacto`,
+    },
+    quizAdopcion: {
+      preguntas: `${API_BASE_URL}/api/quiz-adopcion`,
+      estado: `${API_BASE_URL}/api/quiz-adopcion/estado`,
+      ultimoResultado: `${API_BASE_URL}/api/quiz-adopcion/ultimo-resultado`,
+      enviar: `${API_BASE_URL}/api/quiz-adopcion/enviar`,
+    },
+    analytics: {
+      dashboard: `${API_BASE_URL}/api/analytics/dashboard`,
+      matematico: `${API_BASE_URL}/api/analytics/matematico`,
+      prediccion: `${API_BASE_URL}/api/analytics/prediccion`,
+    },
+    admin: {
+      login: `${API_BASE_URL}/api/admin/auth/login`,
+      verify: `${API_BASE_URL}/api/admin/auth/verify`,
+      logout: `${API_BASE_URL}/api/admin/auth/logout`,
     },
   },
 };

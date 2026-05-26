@@ -3,6 +3,7 @@ import { FaSignOutAlt, FaUser, FaUserShield, FaFlask } from 'react-icons/fa';
 import styles from './Navbar.module.css';
 import useAuth from '../../hooks/useAuth';
 import { getUserDisplayName } from '../../utils/userDisplay';
+import logo from '../../assets/logo.png';
 
 const Navbar = () => {
   const navigate = useNavigate();
@@ -19,8 +20,11 @@ const Navbar = () => {
     <nav className={styles.navbar}>
       <div className={styles.container}>
         <div className={styles.branding}>
-          <h1>Sistema de Cuestionarios</h1>
-          <h2>Universidad Rafael Núñez - Colombia</h2>
+          <img src={logo} alt="Logo" className={styles.brandLogo} />
+          <div>
+            <h1>Sistema de Cuestionarios</h1>
+            <h2>Universidad Rafael Núñez - Colombia</h2>
+          </div>
         </div>
 
         <div className={styles.userSection}>

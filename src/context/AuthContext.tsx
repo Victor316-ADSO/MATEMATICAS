@@ -2,10 +2,11 @@ import { createContext, useState, useEffect, useCallback, useMemo } from 'react'
 import type { ReactNode } from 'react';
 import Swal from 'sweetalert2';
 import { API_ENDPOINTS, fetchApi } from '../config/api';
+import { clearQuizSession } from '../features/dashboard/hooks/useQuizAdopcion';
 
-type User = Record<string, any>;
+export type User = Record<string, any>;
 
-interface AuthState {
+export interface AuthState {
   isAuthenticated: boolean;
   user: User | null;
   isLoading: boolean;
@@ -49,7 +50,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
         setIsAuthenticated(false);
       }
     } catch (error) {
-      console.error('Error al verificar sesión:', error);
+      console.error('Error al verificar sesi?n:', error);
       localStorage.removeItem('authToken');
       setUser(null);
       setIsAuthenticated(false);
@@ -69,10 +70,13 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   }, [checkSession]);
 
   const login = useCallback(async (programa: string, identificacion: string, redirectUrl?: string) => {
+    const programaNorm = programa.trim();
+    const identificacionNorm = identificacion.trim();
+
     try {
       const data = await fetchApi(API_ENDPOINTS.login, {
         method: 'POST',
-        body: JSON.stringify({ programa, identificacion })
+        body: JSON.stringify({ programa: programaNorm, identificacion: identificacionNorm })
       });
 
       if (data && data.success) {
@@ -80,9 +84,10 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
         const loginUser = data?.data?.user ?? data?.data?.usuario ?? data?.usuario;
 
         if (!token) {
-          throw new Error('No se recibió token de autenticación');
+          throw new Error('No se recibi? token de autenticaci?n');
         }
 
+        clearQuizSession();
         localStorage.setItem('authToken', token);
         setUser(loginUser ?? null);
         setIsAuthenticated(true);
@@ -107,24 +112,24 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
         window.location.href = '/principal';
       } else {
         if (data.rawResponse) {
-          console.error('El servidor devolvió HTML en lugar de JSON:', data.rawResponse);
+          console.error('El servidor devolvi? HTML en lugar de JSON:', data.rawResponse);
           
           Swal.fire({
             icon: 'error',
             title: 'Error del servidor',
-            html: `El servidor devolvió un formato inválido:<br><pre style="text-align:left;max-height:300px;overflow:auto">${data.rawResponse.replace(/</g, '&lt;').replace(/>/g, '&gt;')}</pre>`,
+            html: `El servidor devolvi? un formato inv?lido:<br><pre style="text-align:left;max-height:300px;overflow:auto">${data.rawResponse.replace(/</g, '&lt;').replace(/>/g, '&gt;')}</pre>`,
             width: '80%'
           });
           
-          throw new Error('Error del servidor: formato de respuesta inválido');
+          throw new Error('Error del servidor: formato de respuesta inv?lido');
         } else {
-          const errorMsg = data?.error || data?.message || 'Error en el inicio de sesión';
+          const errorMsg = data?.error || data?.message || 'Error en el inicio de sesi?n';
           console.error('Error de login:', errorMsg);
           
           Swal.fire({
             icon: 'error',
-            title: 'Error de inicio de sesión',
-            text: errorMsg
+            title: 'Error de inicio de sesi?n',
+            html: `${errorMsg}<br><br><small>?Primera vez? <a href="/registro">Reg?strate</a> con el mismo programa y n?mero de documento.</small>`,
           });
           
           throw new Error(errorMsg);
@@ -132,13 +137,22 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
       }
     } catch (error) {
       console.error('Error completo:', error);
-      
-      Swal.fire({
-        icon: 'error',
-        title: 'Error de conexión',
-        text: 'No se pudo conectar con el servidor. Por favor, inténtelo de nuevo más tarde.'
-      });
-      
+
+      const msg = error instanceof Error ? error.message : '';
+      const errorYaMostrado =
+        msg.includes('Usuario no encontrado') ||
+        msg.toLowerCase().includes('sesi') ||
+        msg.includes('formato de respuesta') ||
+        msg.toLowerCase().includes('token');
+
+      if (!errorYaMostrado) {
+        Swal.fire({
+          icon: 'error',
+          title: 'Error de conexi?n',
+          text: 'No se pudo conectar con el servidor. Comprueba que XAMPP/Apache est? activo y la URL en src/config/api.ts.',
+        });
+      }
+
       throw error;
     }
   }, []);
@@ -149,8 +163,9 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
         method: 'POST'
       });
     } catch (error) {
-      console.error('Error al cerrar sesión:', error);
+      console.error('Error al cerrar sesi?n:', error);
     } finally {
+      clearQuizSession();
       localStorage.removeItem('authToken');
       setUser(null);
       setIsAuthenticated(false);

@@ -5,6 +5,7 @@ import { navigateWithLoading } from '../../utils/navigation';
 import { fetchApi } from '../../config/api';
 import './login.css';
 import useAuth from '../../hooks/useAuth';
+import logo from '../../assets/logo.png';
 
 type ProgramaOption = { codigo: string; nombre: string };
 
@@ -39,7 +40,7 @@ const Login: React.FC = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [programas, setProgramas] = useState<ProgramaOption[]>([]);
   const [cargandoProgramas, setCargandoProgramas] = useState(true);
-  const { login, isAuthenticated, checkSession } = useAuth();
+  const { login, isAuthenticated, isLoading: authLoading } = useAuth();
 
   useEffect(() => {
     let cancelado = false;
@@ -95,22 +96,15 @@ const Login: React.FC = () => {
     };
   }, []);
 
-  // Verificar si ya está autenticado
+  // Redirigir si ya hay sesión (RutaPublica también redirige; esto cubre el caso en pantalla)
   useEffect(() => {
-    const verificarAutenticacion = async () => {
-      await checkSession();
-      
-      if (isAuthenticated) {
-        if (cuestionarioId) {
-          navigate(`/realizar-cuestionario/${cuestionarioId}`);
-        } else {
-          navigate('/principal');
-        }
-      }
-    };
-    
-    verificarAutenticacion();
-  }, [isAuthenticated, cuestionarioId, navigate, checkSession]);
+    if (authLoading || !isAuthenticated) return;
+    if (cuestionarioId) {
+      navigate(`/realizar-cuestionario/${cuestionarioId}`, { replace: true });
+    } else {
+      navigate('/principal', { replace: true });
+    }
+  }, [isAuthenticated, authLoading, cuestionarioId, navigate]);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>): Promise<void> => {
     e.preventDefault();
@@ -119,7 +113,11 @@ const Login: React.FC = () => {
     try {
       console.log('Intentando iniciar sesión con:', { programa, identificacion });
       
-      await login(programa, identificacion, cuestionarioId ? `/realizar-cuestionario/${cuestionarioId}` : undefined);
+      await login(
+        programa.trim(),
+        identificacion.trim(),
+        cuestionarioId ? `/realizar-cuestionario/${cuestionarioId}` : undefined
+      );
       
       if (!cuestionarioId) {
         await Swal.fire({
@@ -144,7 +142,9 @@ const Login: React.FC = () => {
           <section className="loginContentArea">
             <div className="contentCard">
               <div className="sidebarCardHeader">
-                <h3>Acceso Estudiantes</h3>
+                <div className="logoWrapper">
+                  <img src={logo} alt="Logo" className="authLogo" />
+                </div>
               </div>
               <div className="sidebarCardBody">
                 <form className="loginForm" onSubmit={handleSubmit}>

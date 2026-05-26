@@ -1,0 +1,260 @@
+.studyRoot {
+  background: white;
+  border-radius: var(--radius-lg, 12px);
+  padding: 2rem 2.5rem;
+  box-shadow: var(--shadow-lg, 0 10px 25px rgba(0, 0, 0, 0.08));
+  border: 1px solid var(--color-border, #e9ecef);
+  animation: fadeIn 0.45s ease;
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.studyHeader h2 {
+  margin: 0 0 0.5rem;
+  color: var(--color-primary, #1e40af);
+  font-size: 2rem;
+  font-weight: 800;
+}
+
+.lead {
+  color: var(--color-text, #64748b);
+  margin: 0 0 1.5rem;
+  line-height: 1.6;
+  font-size: 1.05rem;
+}
+
+.block {
+  margin-bottom: 2rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--color-border, #e9ecef);
+}
+
+.block:last-of-type {
+  border-bottom: none;
+}
+
+.block h3 {
+  color: var(--color-primary-dark, #1e3a8a);
+  font-size: 1.35rem;
+  margin: 0 0 1rem;
+}
+
+.block h4 {
+  font-size: 1.05rem;
+  margin: 1rem 0 0.5rem;
+  color: var(--color-text-dark, #334155);
+}
+
+.formulaBox {
+  background: linear-gradient(135deg, #eff6ff 0%, #f8fafc 100%);
+  border: 1px solid #bfdbfe;
+  border-radius: 8px;
+  padding: 1rem 1.25rem;
+  margin: 1rem 0;
+  text-align: center;
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: #1e3a8a;
+}
+
+.formulaRow {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.formulaRow code {
+  display: block;
+  padding: 0.5rem 0.75rem;
+  background: #f1f5f9;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  color: #0f172a;
+}
+
+.bulletList {
+  margin: 0.5rem 0 0;
+  padding-left: 1.25rem;
+  line-height: 1.7;
+  color: var(--color-text-dark, #475569);
+}
+
+.bulletList li {
+  margin-bottom: 0.5rem;
+}
+
+.fasesGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.faseCard {
+  padding: 1rem 1.15rem;
+  border-radius: 8px;
+  border-left: 4px solid #94a3b8;
+  background: #f8fafc;
+}
+
+.faseCard h4 {
+  margin: 0 0 0.35rem;
+  font-size: 1rem;
+}
+
+.faseIntervalo {
+  display: inline-block;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #64748b;
+  margin-bottom: 0.5rem;
+}
+
+.faseCard p {
+  margin: 0.4rem 0 0;
+  font-size: 0.88rem;
+  line-height: 1.5;
+  color: #475569;
+}
+
+.faseCard.success {
+  border-left-color: #10b981;
+  background: #ecfdf5;
+}
+.faseCard.info {
+  border-left-color: #3b82f6;
+  background: #eff6ff;
+}
+.faseCard.warning {
+  border-left-color: #f59e0b;
+  background: #fffbeb;
+}
+.faseCard.primary {
+  border-left-color: #6366f1;
+  background: #eef2ff;
+}
+
+.chartHint {
+  font-size: 0.95rem;
+  color: #64748b;
+  margin-bottom: 0.75rem;
+}
+
+.chartWrap {
+  height: 280px;
+  position: relative;
+}
+
+.toolsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 0.75rem;
+}
+
+.toolCard {
+  padding: 0.85rem 1rem;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.toolCard strong {
+  color: #1e40af;
+  font-size: 0.95rem;
+}
+
+.toolCard span {
+  font-size: 0.85rem;
+  color: #64748b;
+  line-height: 1.4;
+}
+
+.tableWrap {
+  overflow-x: auto;
+}
+
+.refTable {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+
+.refTable th,
+.refTable td {
+  padding: 0.75rem 1rem;
+  text-align: left;
+  border: 1px solid #e2e8f0;
+}
+
+.refTable th {
+  background: #1e40af;
+  color: white;
+  font-weight: 600;
+}
+
+.refTable tr:nth-child(even) {
+  background: #f8fafc;
+}
+
+.refTable code {
+  font-size: 0.85rem;
+  background: #e2e8f0;
+  padding: 0.15rem 0.4rem;
+  border-radius: 4px;
+}
+
+.footerActions {
+  display: flex;
+  justify-content: center;
+  margin-top: 1.5rem;
+  padding-top: 1rem;
+}
+
+.secondaryBtn {
+  padding: 0.75rem 2rem;
+  border: 2px solid var(--color-primary, #1e40af);
+  border-radius: 8px;
+  background: white;
+  color: var(--color-primary, #1e40af);
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.secondaryBtn:hover {
+  background: #eff6ff;
+  transform: translateY(-2px);
+}
+
+@media (max-width: 768px) {
+  .studyRoot {
+    padding: 1.25rem;
+  }
+
+  .studyHeader h2 {
+    font-size: 1.5rem;
+  }
+
+  .fasesGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .refTable {
+    font-size: 0.8rem;
+  }
+}

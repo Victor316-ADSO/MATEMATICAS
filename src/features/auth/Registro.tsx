@@ -4,6 +4,7 @@ import Swal from 'sweetalert2';
 import { navigateWithLoading } from '../../utils/navigation';
 import { fetchApi } from '../../config/api';
 import './registro.css';
+import logo from '../../assets/logo.png';
 
 type ProgramaOption = { codigo: string; nombre: string };
 
@@ -163,7 +164,9 @@ const Registro = () => {
           <div className="registroContentArea">
             <div className="contentCard">
               <div className="sidebarCardHeader">
-                <h3>Registro de Estudiante</h3>
+                <div className="logoWrapper">
+                  <img src={logo} alt="Logo" className="authLogo" />
+                </div>
               </div>
               <div className="sidebarCardBody">
                 <form onSubmit={handleSubmit} className="loginForm">
